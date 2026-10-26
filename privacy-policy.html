@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Privacy Policy for Subtitle Editor and Generator and Nexora Studio apps. Learn how we handle permissions and protect user privacy.">
+  <meta name="robots" content="index,follow">
+  <title>Privacy Policy | Subtitle Editor and Generator - Nexora Studio</title>
+  <link rel="icon" type="image/jpeg" href="assets/sub-app-icon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #080d19;
+      --bg-card: rgba(15, 23, 42, 0.75);
+      --bg-card-hover: rgba(30, 41, 59, 0.85);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(56, 189, 248, 0.3);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --cyan-neon: #38bdf8;
+      --violet-neon: #a855f7;
+      --green-neon: #10b981;
+      --max-width: 960px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(56, 189, 248, 0.15), transparent 70%),
+        radial-gradient(circle at 100% 30%, rgba(168, 85, 247, 0.08), transparent 50%);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: var(--cyan-neon);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: #7dd3fc;
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(8, 13, 25, 0.85);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .badge-btn {
+      padding: 6px 14px;
+      border-radius: 9999px;
+      border: 1px solid var(--border-color);
+      background: rgba(255, 255, 255, 0.05);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .badge-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    main {
+      padding: 56px 0 80px;
+      flex: 1;
+    }
+
+    .policy-header {
+      margin-bottom: 40px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: var(--cyan-neon);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .meta-info {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+    }
+
+    .policy-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 36px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .policy-card h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .policy-card h2::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 20px;
+      border-radius: 2px;
+      background: linear-gradient(to bottom, var(--cyan-neon), var(--violet-neon));
+    }
+
+    .policy-card p {
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .policy-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .policy-card ul {
+      margin: 12px 0 16px 20px;
+      color: var(--text-muted);
+    }
+
+    .policy-card li {
+      margin-bottom: 8px;
+    }
+
+    .contact-box {
+      background: rgba(56, 189, 248, 0.05);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 14px;
+      padding: 20px;
+      margin-top: 16px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 32px 0;
+      color: var(--text-dim);
+      font-size: 0.875rem;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .policy-card {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="brand" href="/">
+          <img src="assets/sub-app-icon.jpg" alt="Subtitle Editor Logo">
+          <span>Nexora Studio</span>
+        </a>
+        <div class="nav-links">
+          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link" href="terms.html">Terms</a>
+          <a class="badge-btn" href="app-ads.txt" target="_blank" rel="noopener">app-ads.txt</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="policy-header">
+        <span class="tag">Compliance & Trust</span>
+        <h1>Privacy Policy</h1>
+        <p class="meta-info">
+          Application: <strong>Subtitle Editor and Generator</strong> (Package: <code>com.nexora.subtitleseditor</code>)<br>
+          Developer: <strong>Nexora Studio / Nexora Mobile App Developer</strong><br>
+          Last updated: October 2026
+        </p>
+      </div>
+
+      <article class="policy-card">
+        <h2>1. Overview & Commitment to Privacy</h2>
+        <p>
+          Nexora Studio ("we", "our", or "us") is dedicated to safeguarding the privacy of our users. This Privacy Policy details our practices concerning data collection, processing, and disclosure for our mobile application <strong>Subtitle Editor and Generator</strong> (package name: <code>com.nexora.subtitleseditor</code>) and our official developer website.
+        </p>
+        <p>
+          We do <strong>not</strong> sell, rent, or trade your personal information or media files to third parties. Your media files (videos, audio, and subtitle documents) are processed locally on your device.
+        </p>
+      </article>
+
+      <article class="policy-card">
+        <h2>2. Data Collection and Media Permissions</h2>
+        <p>
+          <strong>Subtitle Editor and Generator</strong> is built as a productivity tool for video creators, translators, and editors. To provide core features, the app requests minimal device permissions:
+        </p>
+        <ul>
+          <li><strong>Storage & Media Access (Read/Write):</strong> Required exclusively to allow you to select video/audio files from your device, generate subtitle tracks, edit timestamps, and save exported subtitle files (.SRT, .VTT, .TXT) to your storage.</li>
+          <li><strong>Microphone / Audio (Optional):</strong> If you use voice-to-text recording or live transcription features within the app.</li>
+        </ul>
+        <p>
+          <strong>Important:</strong> Your video and audio files remain strictly on your device. We do not upload your media to private remote servers without your explicit knowledge or action.
+        </p>
+      </article>
+
+      <article class="policy-card">
+        <h2>3. Third-Party Services & Advertising (Google AdMob)</h2>
+        <p>
+          To maintain this application and provide free features to our community, we integrate <strong>Google AdMob</strong> to display digital advertisements.
+        </p>
+        <p>
+          Google AdMob and its advertising partners may collect and process device-specific information and anonymized advertising identifiers (such as Google Advertising ID / AAID) to deliver relevant ads, prevent ad fraud, and analyze ad performance in accordance with Google's Advertising Policies.
+        </p>
+        <p>
+          For more information on how Google manages advertising data, please review:
+          <br>
+          <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google Privacy & Terms for Advertising</a>
+        </p>
+      </article>
+
+      <article class="policy-card">
+        <h2>4. Authorized Digital Sellers (app-ads.txt)</h2>
+        <p>
+          In full accordance with IAB Tech Lab standards and Google AdMob requirements, our official developer website hosts the authorized seller file at the root domain:
+        </p>
+        <div class="contact-box" style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;">
+          google.com, pub-4287696400507335, DIRECT, f08c47fec0942fa0
+        </div>
+        <p style="margin-top: 12px;">
+          You can inspect our live verification file anytime at <a href="https://chamax05.github.io/app-ads.txt" target="_blank">chamax05.github.io/app-ads.txt</a>.
+        </p>
+      </article>
+
+      <article class="policy-card">
+        <h2>5. Children’s Privacy</h2>
+        <p>
+          Our application does not knowingly collect personally identifiable information from children under the age of 13. If you believe that your child has provided us with personal data, please contact us immediately so we can take appropriate steps.
+        </p>
+      </article>
+
+      <article class="policy-card">
+        <h2>6. Security and Data Retention</h2>
+        <p>
+          Because your subtitles and media projects are stored locally on your device, you maintain full control over your files and can delete or export them at any time. We employ industry standard practices to ensure any interaction with third-party SDKs (such as AdMob) is executed over secure TLS/HTTPS channels.
+        </p>
+      </article>
+
+      <article class="policy-card">
+        <h2>7. Contact & Developer Support</h2>
+        <p>
+          If you have any questions, feedback, or data privacy inquiries regarding <strong>Subtitle Editor and Generator</strong>, please contact our developer support team:
+        </p>
+        <div class="contact-box">
+          <p><strong>Nexora Studio Support Team</strong></p>
+          <p>Primary Email: <a href="mailto:chamathm100@gmail.com">chamathm100@gmail.com</a></p>
+          <p>Secondary Email: <a href="mailto:chamathm05@gmail.com">chamathm05@gmail.com</a></p>
+          <p>Official Website: <a href="https://chamax05.github.io/">https://chamax05.github.io/</a></p>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Nexora Studio. All rights reserved. | <a href="/">Home</a> | <a href="terms.html">Terms</a> | <a href="app-ads.txt">app-ads.txt</a></p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

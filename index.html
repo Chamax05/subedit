@@ -1,0 +1,1699 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Official website of Subtitle Editor and Generator by Nexora Studio. Create, auto-transcribe, synchronize, and export SRT & VTT subtitles for mobile video creators.">
+  <meta name="keywords" content="Subtitle Editor, Subtitle Generator, SRT editor, VTT captions, Auto transcribe, Nexora Studio, app-ads.txt, com.nexora.subtitleseditor">
+  <meta name="author" content="Nexora Mobile App Developer">
+  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="Subtitle Editor and Generator | Nexora Studio">
+  <meta property="og:description" content="Effortlessly edit, generate, and synchronize subtitles for videos with millisecond precision and AI transcription.">
+  <meta property="og:image" content="assets/app-preview.jpg">
+  <meta property="og:url" content="https://chamax05.github.io/">
+  <meta property="og:type" content="website">
+
+  <title>Subtitle Editor and Generator | Official Developer Site - Nexora Studio</title>
+  <link rel="icon" type="image/jpeg" href="assets/sub-app-icon.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-base: #060913;
+      --bg-surface: #0b1120;
+      --bg-card: rgba(15, 23, 42, 0.72);
+      --bg-card-hover: rgba(30, 41, 59, 0.85);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(56, 189, 248, 0.25);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --cyan: #38bdf8;
+      --cyan-glow: rgba(56, 189, 248, 0.35);
+      --violet: #818cf8;
+      --purple: #a855f7;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      
+      --gradient-accent: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+      --gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+      --max-w: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 90% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 10% 70%, rgba(16, 185, 129, 0.06) 0%, transparent 40%);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max-w), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* Ambient Glow Effects */
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .glow-1 {
+      top: 100px;
+      left: 15%;
+      width: 320px;
+      height: 320px;
+      background: rgba(56, 189, 248, 0.15);
+    }
+    .glow-2 {
+      top: 300px;
+      right: 10%;
+      width: 400px;
+      height: 400px;
+      background: rgba(168, 85, 247, 0.12);
+    }
+
+    /* Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(6, 9, 19, 0.8);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .nav-inner {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 20px var(--cyan-glow);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      flex-shrink: 0;
+    }
+
+    .brand-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .brand-text h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .brand-text span {
+      font-size: 0.75rem;
+      color: var(--cyan);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .admob-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 15px;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      transition: all 0.2s;
+    }
+
+    .admob-pill:hover {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: rgba(16, 185, 129, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--emerald);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--emerald);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      padding: 80px 0 60px;
+      z-index: 1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid var(--border-glow);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #7dd3fc;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .gradient-text {
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 32px;
+      max-width: 540px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 52px;
+      padding: 0 24px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid transparent;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+      color: #040814;
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 6px 28px rgba(56, 189, 248, 0.55);
+      transform: translateY(-2px);
+      color: #000;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-val {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .meta-lbl {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Interactive Subtitle Demo Studio in Hero */
+    .hero-interactive {
+      position: relative;
+    }
+
+    .studio-frame {
+      background: rgba(11, 17, 32, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(56, 189, 248, 0.1);
+      backdrop-filter: blur(16px);
+      transition: border-color 0.3s;
+    }
+
+    .studio-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(6, 9, 19, 0.6);
+    }
+
+    .topbar-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .tdot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .tdot-red { background: #ef4444; }
+    .tdot-yellow { background: #f59e0b; }
+    .tdot-green { background: #10b981; }
+
+    .topbar-title {
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+    }
+
+    .topbar-export {
+      font-size: 0.75rem;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--cyan);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Video Player Screen Simulation */
+    .video-viewport {
+      position: relative;
+      width: 100%;
+      height: 230px;
+      background: #030712;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-viewport img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.75;
+      filter: saturate(1.1);
+      transition: filter 0.3s;
+    }
+
+    .subtitle-overlay {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 86%;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .subtitle-text {
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.78);
+      color: #fef08a;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      transition: all 0.25s ease;
+    }
+
+    /* Timeline & Waveform */
+    .timeline-container {
+      padding: 16px 20px;
+      background: rgba(6, 9, 19, 0.9);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .timeline-ctrls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .playback-btn {
+      background: var(--cyan);
+      border: none;
+      color: #040814;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: bold;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+    .playback-btn:hover {
+      transform: scale(1.08);
+      background: #7dd3fc;
+    }
+
+    .timecode-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--cyan);
+    }
+
+    .waveform-visual {
+      position: relative;
+      height: 48px;
+      background: rgba(15, 23, 42, 0.7);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding: 0 6px;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .wave-bars {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      width: 100%;
+      height: 36px;
+    }
+
+    .wbar {
+      flex: 1;
+      background: #334155;
+      border-radius: 2px;
+      transition: height 0.2s, background-color 0.2s;
+    }
+
+    .wbar.active {
+      background: var(--cyan);
+      box-shadow: 0 0 6px var(--cyan);
+    }
+
+    .playhead-needle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #f43f5e;
+      box-shadow: 0 0 8px #f43f5e;
+      left: 45%;
+      pointer-events: none;
+      transition: left 0.1s linear;
+    }
+
+    /* Subtitle Cue List */
+    .cues-list {
+      max-height: 180px;
+      overflow-y: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cue-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .cue-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .cue-card.selected {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: var(--cyan);
+    }
+
+    .cue-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .cue-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      color: var(--cyan);
+    }
+
+    .cue-text {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .cue-badge {
+      font-size: 0.72rem;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 3px 8px;
+      border-radius: 6px;
+      color: var(--text-dim);
+    }
+
+    /* Verification Status Banner (Google AdMob) */
+    .verification-section {
+      padding: 40px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .verification-card {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(15, 23, 42, 0.8) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 20px;
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 24px;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .v-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--emerald);
+    }
+
+    .v-details h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .v-details p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .v-code {
+      margin-top: 8px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: #a7f3d0;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .copy-btn {
+      background: none;
+      border: none;
+      color: var(--cyan);
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(56, 189, 248, 0.1);
+    }
+    .copy-btn:hover {
+      background: rgba(56, 189, 248, 0.25);
+    }
+
+    .v-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    /* Core Features Grid */
+    .features-section {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 56px;
+    }
+
+    .section-tag {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--cyan);
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 32px 28px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--border-glow), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(56, 189, 248, 0.3);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .f-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      color: var(--cyan);
+    }
+
+    .feature-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* All Nexora Apps Section */
+    .apps-section {
+      padding: 80px 0;
+      background: rgba(11, 17, 32, 0.4);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .app-cards-wrapper {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .app-card-spotlight {
+      background: linear-gradient(145deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.9) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 24px;
+      padding: 36px;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .app-flagship-tag {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: var(--gradient-accent);
+      color: #040814;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .app-card-header {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .app-big-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      flex-shrink: 0;
+    }
+
+    .app-big-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .app-info-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .app-pkg {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--cyan);
+      margin-top: 2px;
+    }
+
+    .app-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .highlight-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .highlight-item span {
+      color: var(--emerald);
+      font-weight: bold;
+    }
+
+    /* Electricity App Card */
+    .app-card-secondary {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px;
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .app-sec-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+      margin-bottom: 20px;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      padding: 80px 0;
+    }
+
+    .faq-accordion {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .faq-item:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .faq-trigger {
+      width: 100%;
+      text-align: left;
+      padding: 20px 24px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .faq-chevron {
+      font-size: 1.2rem;
+      transition: transform 0.3s;
+      color: var(--cyan);
+    }
+
+    .faq-body {
+      padding: 0 24px 20px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      display: none;
+    }
+
+    .faq-item.open .faq-body {
+      display: block;
+    }
+
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* Developer Support & Contact */
+    .contact-section {
+      padding: 80px 0 100px;
+      position: relative;
+    }
+
+    .contact-card {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 28px;
+      padding: 48px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .contact-left h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .contact-left p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 24px;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-box {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      padding: 16px 20px;
+      border-radius: 16px;
+      transition: all 0.2s;
+    }
+
+    .contact-box:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(56, 189, 248, 0.3);
+      transform: translateX(4px);
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .contact-info strong {
+      display: block;
+      color: #fff;
+      font-size: 0.95rem;
+    }
+
+    .contact-info span {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 48px 0;
+      background: rgba(4, 7, 15, 0.9);
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a:hover {
+      color: var(--cyan);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .features-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .app-cards-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .verification-card {
+        grid-template-columns: 1fr;
+      }
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-links a:not(.admob-pill) {
+        display: none;
+      }
+      .hero {
+        padding-top: 40px;
+      }
+      .hero-actions {
+        flex-direction: column;
+      }
+      .btn {
+        width: 100%;
+      }
+      .contact-card {
+        padding: 28px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Ambient background lighting -->
+  <div class="glow-orb glow-1"></div>
+  <div class="glow-orb glow-2"></div>
+
+  <!-- Navigation Bar -->
+  <header>
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="/">
+          <div class="brand-icon">
+            <img src="assets/sub-app-icon.jpg" alt="Subtitle Editor Logo">
+          </div>
+          <div class="brand-text">
+            <h1>Nexora Studio</h1>
+            <span>Official Developer Portal</span>
+          </div>
+        </a>
+
+        <nav class="nav-links" aria-label="Main Navigation">
+          <a href="#features">Features</a>
+          <a href="#demo">Live Demo</a>
+          <a href="#apps">Apps</a>
+          <a href="#support">Support</a>
+          <a href="privacy-policy.html">Privacy</a>
+          <a class="admob-pill" href="app-ads.txt" target="_blank" rel="noopener">
+            <span class="live-dot"></span>
+            app-ads.txt Active
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="overview">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            Featured Android App &amp; Video Suite
+          </div>
+
+          <h1 class="hero-title">
+            The Ultimate <br>
+            <span class="gradient-text">Subtitle Editor &amp; Generator</span>
+          </h1>
+
+          <p class="hero-desc">
+            Transform spoken dialog into frame-accurate captions. Auto-transcribe audio, fine-tune timestamps down to milliseconds, and export in universal <strong>.SRT</strong>, <strong>.VTT</strong>, and hardcoded formats for TikTok, YouTube, and professional video editing.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.nexora.subtitleseditor" target="_blank" rel="noopener">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186a2.235 2.235 0 0 1-.61-.314V2.128c.18-.112.39-.214.609-.314zm11.233 11.234l2.585-2.585-12.016-6.94 9.431 9.525zm0 1.895l-9.43 9.525 12.015-6.94-2.585-2.585zm1.472-1.472l3.411-1.968c.84-.486.84-1.272 0-1.758l-3.411-1.968-2.029 2.028 2.029 2.028z"/>
+              </svg>
+              Get on Google Play
+            </a>
+            <a class="btn btn-secondary" href="#demo">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              Try Interactive Editor
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-item">
+              <span class="meta-val">com.nexora.subtitleseditor</span>
+              <span class="meta-lbl">Package ID</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-val">SRT / VTT / TXT</span>
+              <span class="meta-lbl">Formats</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-val">100% On-Device</span>
+              <span class="meta-lbl">Privacy First</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Editor Mockup -->
+        <div class="hero-interactive" id="demo">
+          <div class="studio-frame">
+            <div class="studio-topbar">
+              <div class="topbar-dots">
+                <div class="tdot tdot-red"></div>
+                <div class="tdot tdot-yellow"></div>
+                <div class="tdot tdot-green"></div>
+              </div>
+              <div class="topbar-title">Subtitle Studio &bull; preview_clip.mp4</div>
+              <div class="topbar-export">READY (.SRT)</div>
+            </div>
+
+            <!-- Video Player Simulation -->
+            <div class="video-viewport">
+              <img src="assets/app-preview.jpg" alt="Video Preview Screen">
+              <div class="subtitle-overlay">
+                <div class="subtitle-text" id="activeSubText">"...and we found ourselves surrounded by light."</div>
+              </div>
+            </div>
+
+            <!-- Timeline & Audio Waveform -->
+            <div class="timeline-container">
+              <div class="timeline-ctrls">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <button class="playback-btn" id="playBtn" aria-label="Play/Pause Simulation">
+                    <span id="playIcon">&#9658;</span>
+                  </button>
+                  <span class="timecode-display" id="timeDisplay">00:03:45.880</span>
+                </div>
+                <span style="font-size: 0.78rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Click waveforms to scrub</span>
+              </div>
+
+              <div class="waveform-visual" id="waveformBox">
+                <div class="wave-bars" id="waveBarsContainer">
+                  <!-- Generated dynamically in JS -->
+                </div>
+                <div class="playhead-needle" id="playhead"></div>
+              </div>
+            </div>
+
+            <!-- Cue list -->
+            <div class="cues-list" id="cuesList">
+              <div class="cue-card" data-start="00:01:120" data-end="00:03:450" data-text="Every great journey begins with a single frame.">
+                <div class="cue-meta">
+                  <span class="cue-time">00:01:120 &rarr; 00:03:450</span>
+                  <span class="cue-text">Every great journey begins with a single frame.</span>
+                </div>
+                <span class="cue-badge">Cue #1</span>
+              </div>
+
+              <div class="cue-card selected" data-start="00:03:458" data-end="00:05:880" data-text="...and we found ourselves surrounded by light.">
+                <div class="cue-meta">
+                  <span class="cue-time">00:03:458 &rarr; 00:05:880</span>
+                  <span class="cue-text">...and we found ourselves surrounded by light.</span>
+                </div>
+                <span class="cue-badge">Cue #2</span>
+              </div>
+
+              <div class="cue-card" data-start="00:05:900" data-end="00:08:340" data-text="Synchronized captions ready for export!">
+                <div class="cue-meta">
+                  <span class="cue-time">00:05:900 &rarr; 00:08:340</span>
+                  <span class="cue-text">Synchronized captions ready for export!</span>
+                </div>
+                <span class="cue-badge">Cue #3</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Google AdMob & Verification Section -->
+  <section class="verification-section">
+    <div class="container">
+      <div class="verification-card">
+        <div class="v-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+
+        <div class="v-details">
+          <h3>Google AdMob Authorized Digital Seller (app-ads.txt)</h3>
+          <p>
+            Official declaration compliant with IAB Tech Lab standards. Verified publisher record for <strong>com.nexora.subtitleseditor</strong> and Nexora Studio apps:
+          </p>
+          <div class="v-code">
+            <span id="appAdsText">google.com, pub-4287696400507335, DIRECT, f08c47fec0942fa0</span>
+            <button class="copy-btn" id="copyAdsBtn" title="Copy snippet">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              Copy
+            </button>
+          </div>
+        </div>
+
+        <div class="v-actions">
+          <a class="btn btn-secondary" href="app-ads.txt" target="_blank" rel="noopener">
+            View Live app-ads.txt
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Features Grid -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Engineered for Creators</span>
+        <h2 class="section-title">Built for Speed, Precision, &amp; Universal Compatibility</h2>
+        <p class="section-desc">Everything mobile content creators, filmmakers, and translators need to craft flawless subtitles in record time.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="f-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" y1="19" x2="12" y2="23"/>
+              <line x1="8" y1="23" x2="16" y2="23"/>
+            </svg>
+          </div>
+          <h3>Auto-Speech Transcription</h3>
+          <p>Harness smart voice recognition algorithms to convert spoken words into structured caption blocks automatically with timestamps.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="f-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h3>Millisecond Precision Sync</h3>
+          <p>Interactive scrubbing timeline with visual audio waveforms. Merge, split, extend, or shift caption timing with microsecond accuracy.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="f-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <h3>Multi-Format Export</h3>
+          <p>Seamlessly save and export to standard SubRip (.SRT), WebVTT (.VTT), plain text (.TXT), or prepare burn-in overlays for social media.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="f-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+              <line x1="7" y1="2" x2="7" y2="22"/>
+              <line x1="17" y1="2" x2="17" y2="22"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <line x1="2" y1="7" x2="7" y2="7"/>
+              <line x1="2" y1="17" x2="7" y2="17"/>
+              <line x1="17" y1="17" x2="22" y2="17"/>
+              <line x1="17" y1="7" x2="22" y2="7"/>
+            </svg>
+          </div>
+          <h3>Real-Time Live Video Player</h3>
+          <p>Watch video playback synchronized with your subtitle changes in real time. Never guess whether the text matches the lips.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="f-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <h3>Multi-Language Translation</h3>
+          <p>Translate your subtitle scripts into dozens of languages simultaneously to expand your video audience across international borders.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="f-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+          <h3>Privacy-Centric Offline Mode</h3>
+          <p>Your creative video files remain securely on your device. All editing and file operations execute locally without invasive tracking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Published Apps Portfolio -->
+  <section class="apps-section" id="apps">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Nexora Portfolio</span>
+        <h2 class="section-title">Published Applications by Nexora Studio</h2>
+        <p class="section-desc">Explore reliable, utility-driven mobile applications built for everyday productivity.</p>
+      </div>
+
+      <div class="app-cards-wrapper">
+        <!-- Spotlight: Subtitle Editor -->
+        <article class="app-card-spotlight">
+          <span class="app-flagship-tag">Featured App</span>
+          <div class="app-card-header">
+            <div class="app-big-icon">
+              <img src="assets/sub-app-icon.jpg" alt="Subtitle Editor Icon">
+            </div>
+            <div>
+              <h3 class="app-info-title">Subtitle Editor and Generator</h3>
+              <div class="app-pkg">Package: com.nexora.subtitleseditor</div>
+            </div>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            A premier mobile utility for auto-generating, fine-tuning, translating, and exporting subtitle streams (.SRT, .VTT). Designed with creators, vloggers, and accessibility champions in mind.
+          </p>
+
+          <div class="app-highlights">
+            <div class="highlight-item"><span>&#10003;</span> Frame-perfect timeline sync</div>
+            <div class="highlight-item"><span>&#10003;</span> SRT, VTT, &amp; TXT support</div>
+            <div class="highlight-item"><span>&#10003;</span> Google AdMob integrated</div>
+            <div class="highlight-item"><span>&#10003;</span> Real-time video preview</div>
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap;">
+            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.nexora.subtitleseditor" target="_blank" rel="noopener">
+              View on Google Play
+            </a>
+            <a class="btn btn-secondary" href="privacy-policy.html">
+              Privacy Policy
+            </a>
+          </div>
+        </article>
+
+        <!-- Secondary: Electricity Bill Calculator -->
+        <article class="app-card-secondary">
+          <div>
+            <div class="app-sec-icon">
+              &#9889;
+            </div>
+            <h3 class="app-info-title" style="font-size: 1.35rem; margin-bottom: 6px;">Electricity Bill Calculator</h3>
+            <div class="app-pkg" style="margin-bottom: 16px;">com.chamathmadhuranga.electricitycost</div>
+            <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
+              Simple, precise utility calculation tool providing step-by-step tariff breakdowns, unit tier estimations, and energy saving tips for domestic and commercial consumers.
+            </p>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <a class="btn btn-secondary" style="width: 100%;" href="https://play.google.com/store/apps/details?id=com.chamathmadhuranga.electricitycost" target="_blank" rel="noopener">
+              Open Play Store Listing
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Frequently Asked Questions</span>
+        <h2 class="section-title">Common Questions &amp; Verification Details</h2>
+      </div>
+
+      <div class="faq-accordion">
+        <div class="faq-item open">
+          <button class="faq-trigger" type="button">
+            <span>Where is the authorized seller declaration (app-ads.txt) hosted?</span>
+            <span class="faq-chevron">&#9662;</span>
+          </button>
+          <div class="faq-body">
+            Our app-ads.txt file is published directly at the root domain: <code>https://chamax05.github.io/app-ads.txt</code>. It contains the exact publisher verification record <code>google.com, pub-4287696400507335, DIRECT, f08c47fec0942fa0</code> for automatic crawler validation by Google AdMob and ad networks.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" type="button">
+            <span>What video and subtitle formats are supported?</span>
+            <span class="faq-chevron">&#9662;</span>
+          </button>
+          <div class="faq-body">
+            Subtitle Editor and Generator supports importing MP4, MKV, MOV, and AVI video files, and reading/writing SubRip (.SRT), WebVTT (.VTT), and standard text (.TXT) files.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" type="button">
+            <span>Are my media files uploaded to any external servers?</span>
+            <span class="faq-chevron">&#9662;</span>
+          </button>
+          <div class="faq-body">
+            No. Your privacy is protected: video rendering, waveform analysis, and file generation operate locally on your device. Please read our comprehensive <a href="privacy-policy.html" style="color: var(--cyan); text-decoration: underline;">Privacy Policy</a> for full details.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" type="button">
+            <span>How do I get technical support for Nexora apps?</span>
+            <span class="faq-chevron">&#9662;</span>
+          </button>
+          <div class="faq-body">
+            You can reach our lead developer directly via email at <code>chamathm100@gmail.com</code> or <code>chamathm05@gmail.com</code>. We respond promptly to all bug reports, feature requests, and store inquiries.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Developer Support Section -->
+  <section class="contact-section" id="support">
+    <div class="container">
+      <div class="contact-card">
+        <div class="contact-left">
+          <span class="section-tag">Direct Developer Contact</span>
+          <h2>We're Here to Help</h2>
+          <p>
+            Whether you have suggestions for new subtitle tools, questions regarding Google AdMob verification, or need assistance with your app download, reach out to us anytime.
+          </p>
+          <a class="btn btn-primary" href="mailto:chamathm100@gmail.com?subject=Subtitle%20Editor%20App%20Support">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            Send Developer Email
+          </a>
+        </div>
+
+        <div class="contact-methods">
+          <a class="contact-box" href="mailto:chamathm100@gmail.com">
+            <div class="contact-icon">&#9993;</div>
+            <div class="contact-info">
+              <strong>Primary Contact</strong>
+              <span>chamathm100@gmail.com</span>
+            </div>
+          </a>
+
+          <a class="contact-box" href="mailto:chamathm05@gmail.com">
+            <div class="contact-icon">&#9993;</div>
+            <div class="contact-info">
+              <strong>Secondary Developer Support</strong>
+              <span>chamathm05@gmail.com</span>
+            </div>
+          </a>
+
+          <div class="contact-box">
+            <div class="contact-icon">&#128736;</div>
+            <div class="contact-info">
+              <strong>Developer Studio</strong>
+              <span>Nexora Mobile App Developer &bull; Sri Lanka</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <strong>Nexora Mobile App Developer</strong> &mdash; Official Developer Portal<br>
+          <span>&copy; <span id="currentYear"></span> All rights reserved. Subtitle Editor and Generator.</span>
+        </div>
+
+        <div class="footer-links">
+          <a href="#overview">Overview</a>
+          <a href="#features">Features</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="app-ads.txt" target="_blank" rel="noopener">app-ads.txt</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Demo & Script Logic -->
+  <script>
+    // Update copyright year
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+    // Copy app-ads.txt snippet logic
+    const copyBtn = document.getElementById("copyAdsBtn");
+    const adsText = document.getElementById("appAdsText").textContent;
+    copyBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(adsText).then(() => {
+        copyBtn.textContent = "Copied!";
+        setTimeout(() => {
+          copyBtn.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg> Copy`;
+        }, 2000);
+      });
+    });
+
+    // Generate random realistic audio waveform bars
+    const waveContainer = document.getElementById("waveBarsContainer");
+    const numBars = 48;
+    const waveHeights = [20, 35, 60, 45, 80, 95, 70, 50, 40, 65, 85, 100, 90, 75, 45, 30, 25, 55, 75, 90, 85, 60, 40, 70, 95, 100, 80, 60, 40, 30, 50, 80, 90, 70, 50, 65, 85, 95, 70, 40, 30, 60, 80, 65, 45, 30, 20, 15];
+
+    for (let i = 0; i < numBars; i++) {
+      const bar = document.createElement("div");
+      bar.className = "wbar";
+      bar.style.height = `${waveHeights[i % waveHeights.length]}%`;
+      waveContainer.appendChild(bar);
+    }
+
+    // Interactive Demo Playback & Scrubbing
+    let isPlaying = false;
+    let playheadPosition = 45; // percentage
+    let playInterval;
+    const playhead = document.getElementById("playhead");
+    const playBtn = document.getElementById("playBtn");
+    const playIcon = document.getElementById("playIcon");
+    const timeDisplay = document.getElementById("timeDisplay");
+    const activeSubText = document.getElementById("activeSubText");
+    const cueCards = document.querySelectorAll(".cue-card");
+
+    function updatePlayhead(pos) {
+      playheadPosition = Math.max(0, Math.min(100, pos));
+      playhead.style.left = `${playheadPosition}%`;
+
+      // Update waveform bars highlight
+      const bars = document.querySelectorAll(".wbar");
+      const activeIndex = Math.floor((playheadPosition / 100) * bars.length);
+      bars.forEach((b, idx) => {
+        if (idx <= activeIndex) {
+          b.classList.add("active");
+        } else {
+          b.classList.remove("active");
+        }
+      });
+
+      // Update timecode display based on progress
+      const totalSeconds = 12.3;
+      const curSec = (playheadPosition / 100) * totalSeconds;
+      const min = Math.floor(curSec / 60);
+      const sec = Math.floor(curSec % 60);
+      const ms = Math.floor((curSec % 1) * 1000);
+      timeDisplay.textContent = `00:${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}.${String(ms).padStart(3, '0')}`;
+
+      // Sync active subtitle
+      if (playheadPosition < 33) {
+        selectCue(0);
+      } else if (playheadPosition < 68) {
+        selectCue(1);
+      } else {
+        selectCue(2);
+      }
+    }
+
+    function selectCue(index) {
+      cueCards.forEach((c, idx) => {
+        if (idx === index) {
+          c.classList.add("selected");
+          activeSubText.textContent = `"${c.getAttribute("data-text")}"`;
+        } else {
+          c.classList.remove("selected");
+        }
+      });
+    }
+
+    playBtn.addEventListener("click", () => {
+      isPlaying = !isPlaying;
+      if (isPlaying) {
+        playIcon.innerHTML = "&#10074;&#10074;"; // Pause icon
+        playInterval = setInterval(() => {
+          playheadPosition += 0.8;
+          if (playheadPosition > 100) playheadPosition = 0;
+          updatePlayhead(playheadPosition);
+        }, 100);
+      } else {
+        playIcon.innerHTML = "&#9658;"; // Play icon
+        clearInterval(playInterval);
+      }
+    });
+
+    // Scrub waveform on click
+    document.getElementById("waveformBox").addEventListener("click", (e) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const newPos = (clickX / rect.width) * 100;
+      updatePlayhead(newPos);
+    });
+
+    // Click cue card to jump
+    cueCards.forEach((card, idx) => {
+      card.addEventListener("click", () => {
+        const positions = [18, 50, 85];
+        updatePlayhead(positions[idx]);
+      });
+    });
+
+    // Initialize initial state
+    updatePlayhead(45);
+
+    // FAQ Accordion
+    document.querySelectorAll(".faq-trigger").forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const item = trigger.parentElement;
+        item.classList.toggle("open");
+      });
+    });
+  </script>
+</body>
+</html>
